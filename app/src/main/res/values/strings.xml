@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">NFC-e Scanner</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Início</string>
+    <string name="nav_scanner">Escanear</string>
+    <string name="nav_invoices">Notas</string>
+    
+    <!-- Home -->
+    <string name="total_month">Total do Mês</string>
+    <string name="total_year">Total do Ano</string>
+    <string name="recent_invoices">Notas Recentes</string>
+    <string name="monthly_expenses">Gastos dos Últimos Meses</string>
+    
+    <!-- Scanner -->
+    <string name="scan_instruction">Posicione o QR Code ou código de barras da NFC-e dentro da área</string>
+    <string name="flash_toggle">Ligar/Desligar flash</string>
+    <string name="gallery_select">Selecionar da galeria</string>
+    
+    <!-- Invoice -->
+    <string name="invoice_info">Informações da Nota</string>
+    <string name="emitter_info">Emitente</string>
+    <string name="values">Valores</string>
+    <string name="access_key">Chave de Acesso</string>
+    <string name="invoice_items">Itens da Nota</string>
+    
+    <!-- Empty States -->
+    <string name="no_invoices_found">Nenhuma nota encontrada</string>
+    <string name="scan_to_start">Escaneie o QR Code de uma NFC-e para começar</string>
+    <string name="scan_now">Escanear Agora</string>
+    
+    <!-- Errors -->
+    <string name="camera_permission_required">Permissão de câmera necessária para escanear códigos</string>
+    <string name="invalid_qr_code">Código QR ou código de barras inválido para NFC-e</string>
+    <string name="camera_error">Erro ao iniciar câmera</string>
+    
+    <!-- Content Descriptions -->
+    <string name="scan_nfce">Escanear NFC-e</string>
+</resources>

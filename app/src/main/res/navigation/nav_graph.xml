@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.nfc.ui.home.HomeFragment"
+        android:label="NFC-e"
+        tools:layout="@layout/fragment_home">
+        
+        <action
+            android:id="@+id/action_home_to_scanner"
+            app:destination="@id/scannerFragment" />
+        
+        <action
+            android:id="@+id/action_home_to_invoice_detail"
+            app:destination="@id/invoiceDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/scannerFragment"
+        android:name="com.example.nfc.ui.scanner.ScannerFragment"
+        android:label="Escanear NFC-e"
+        tools:layout="@layout/fragment_scanner">
+        
+        <action
+            android:id="@+id/action_scanner_to_invoice_detail"
+            app:destination="@id/invoiceDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/invoiceListFragment"
+        android:name="com.example.nfc.ui.invoice.InvoiceListFragment"
+        android:label="Minhas Notas"
+        tools:layout="@layout/fragment_invoice_list">
+        
+        <action
+            android:id="@+id/action_invoice_list_to_detail"
+            app:destination="@id/invoiceDetailFragment" />
+        
+        <action
+            android:id="@+id/action_invoice_list_to_scanner"
+            app:destination="@id/scannerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/invoiceDetailFragment"
+        android:name="com.example.nfc.ui.invoice.InvoiceDetailFragment"
+        android:label="Detalhes da Nota"
+        tools:layout="@layout/fragment_invoice_detail">
+        
+        <argument
+            android:name="chaveAcesso"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
