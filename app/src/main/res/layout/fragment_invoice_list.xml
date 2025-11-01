@@ -29,7 +29,7 @@
             android:layout_height="120dp"
             android:alpha="0.5"
             android:src="@drawable/ic_receipt"
-            android:tint="?attr/colorOnSurfaceVariant" />
+            android:tint="@color/text_secondary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
             android:layout_marginTop="8dp"
             android:text="Escaneie o QR Code de uma NFC-e para começar"
             android:textAlignment="center"
-            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
         <com.google.android.material.button.MaterialButton

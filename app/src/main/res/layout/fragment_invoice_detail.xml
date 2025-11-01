@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="01/01/2024 12:00"
-                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
 
                     <TextView
@@ -128,7 +128,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="00.000.000/0000-00"
-                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -203,7 +203,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="R$ 0,00"
-                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textColor="@color/text_secondary"
                             android:textSize="14sp" />
 
                     </LinearLayout>

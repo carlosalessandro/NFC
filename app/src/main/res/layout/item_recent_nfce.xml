@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp"
                     tools:text="Nota: 000001" />
 
@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp"
             tools:text="01/11/2024" />
 
