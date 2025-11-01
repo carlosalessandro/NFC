@@ -2,7 +2,7 @@
 
 Um aplicativo Android completo para leitura e gerenciamento de Notas Fiscais de Consumidor Eletrônicas (NFC-e) com recursos de escaneamento por câmera, armazenamento local e visualização de gráficos de gastos.
 
-## 🚀 Funcionalidades
+
 
 ### ✅ Implementadas
 - **Scanner de QR Code/Código de Barras**: Utiliza CameraX e ML Kit para leitura de códigos
