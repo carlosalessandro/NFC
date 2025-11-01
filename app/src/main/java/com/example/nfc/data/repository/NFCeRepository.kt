@@ -43,6 +43,12 @@ class NFCeRepository(private val nfceDao: NFCeDao) {
         }
     }
     
+    suspend fun updateNFCe(nfce: NFCe) {
+        withContext(Dispatchers.IO) {
+            nfceDao.updateNFCe(nfce)
+        }
+    }
+    
     suspend fun deleteNFCe(nfce: NFCe) {
         withContext(Dispatchers.IO) {
             nfceDao.deleteNFCe(nfce)
