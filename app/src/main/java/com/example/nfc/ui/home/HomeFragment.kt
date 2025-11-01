@@ -2,6 +2,7 @@ package com.example.nfc.ui.home
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,17 +34,22 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("HomeFragment", "onCreateView: Criando view")
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        Log.d("HomeFragment", "onCreateView: View criada")
         return binding.root
     }
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
+        Log.d("HomeFragment", "onViewCreated: Configurando fragment")
+        
         setupRecyclerView()
         setupClickListeners()
         setupObservers()
         
+        Log.d("HomeFragment", "onViewCreated: Carregando dados do dashboard")
         viewModel.loadDashboardData()
     }
     
