@@ -132,7 +132,7 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ## 👨‍💻 Desenvolvedor
 
-Desenvolvido com ❤️ usando Android + Kotlin
+Desenvolvido por: Carlos Alessandro semião
 
 ---
 
