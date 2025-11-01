@@ -2,10 +2,6 @@
 
 Um aplicativo Android completo para leitura e gerenciamento de Notas Fiscais de Consumidor Eletrônicas (NFC-e) com recursos de escaneamento por câmera, armazenamento local e visualização de gráficos de gastos.
 
-**Importante:** Substitua `assets/image_093f48.png` pelo caminho real da sua imagem no seu repositório.
-
-![Captura de Tela do Aplicativo NFC-e Scanner](assets/image_093f48.png)
-
 ## 🚀 Funcionalidades
 
 ### ✅ Implementadas
