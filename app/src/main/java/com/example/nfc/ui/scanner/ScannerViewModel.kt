@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.nfc.data.database.NFCeDatabase
 import com.example.nfc.data.repository.NFCeRepository
 import com.example.nfc.utils.QRCodeParser
+import com.example.nfc.utils.ChaveAcessoValidator
+import com.example.nfc.utils.ValidationResult
 import kotlinx.coroutines.launch
 
 class ScannerViewModel(application: Application) : AndroidViewModel(application) {
@@ -23,6 +25,9 @@ class ScannerViewModel(application: Application) : AndroidViewModel(application)
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
     
+    private val _validationMessage = MutableLiveData<String?>()
+    val validationMessage: LiveData<String?> = _validationMessage
+    
     init {
         val database = NFCeDatabase.getDatabase(application)
         repository = NFCeRepository(database.nfceDao())
@@ -31,25 +36,45 @@ class ScannerViewModel(application: Application) : AndroidViewModel(application)
     fun processScannedCode(rawValue: String) {
         viewModelScope.launch {
             _loading.value = true
+            _validationMessage.value = "Processando código..."
             
             try {
                 val chaveAcesso = QRCodeParser.extractChaveAcesso(rawValue)
                 
-                if (chaveAcesso != null && QRCodeParser.isValidChaveAcesso(chaveAcesso)) {
-                    // Verificar se a NFC-e já existe no banco
-                    val existingNFCe = repository.getNFCeByChave(chaveAcesso)
+                if (chaveAcesso != null) {
+                    _validationMessage.value = "Validando chave de acesso..."
                     
-                    if (existingNFCe != null) {
-                        _scanResult.value = chaveAcesso
-                    } else {
-                        // Buscar dados da NFC-e via API ou processar offline
-                        _scanResult.value = chaveAcesso
+                    // Validar chave completamente
+                    val validacao = ChaveAcessoValidator.validarChaveCompleta(chaveAcesso)
+                    
+                    when (validacao) {
+                        is ValidationResult.Valid -> {
+                            _validationMessage.value = "✓ Chave válida! Estado: ${validacao.uf}"
+                            
+                            // Verificar se a NFC-e já existe no banco
+                            val existingNFCe = repository.getNFCeByChave(chaveAcesso)
+                            
+                            if (existingNFCe != null) {
+                                _validationMessage.value = "✓ Nota já cadastrada!"
+                            } else {
+                                _validationMessage.value = "✓ Nova nota encontrada!"
+                            }
+                            
+                            // Navegar para detalhes
+                            _scanResult.value = chaveAcesso
+                        }
+                        is ValidationResult.Invalid -> {
+                            _error.value = "Chave inválida: ${validacao.reason}"
+                            _validationMessage.value = null
+                        }
                     }
                 } else {
-                    _error.value = "Código QR ou código de barras inválido para NFC-e"
+                    _error.value = "Não foi possível extrair chave de acesso do código"
+                    _validationMessage.value = null
                 }
             } catch (e: Exception) {
                 _error.value = "Erro ao processar código: ${e.message}"
+                _validationMessage.value = null
             } finally {
                 _loading.value = false
             }
@@ -62,5 +87,9 @@ class ScannerViewModel(application: Application) : AndroidViewModel(application)
     
     fun clearScanResult() {
         _scanResult.value = null
+    }
+    
+    fun clearValidationMessage() {
+        _validationMessage.value = null
     }
 }

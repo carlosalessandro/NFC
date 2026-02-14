@@ -25,6 +25,12 @@ class NFCeRepository(private val nfceDao: NFCeDao) {
         }
     }
     
+    suspend fun insertItens(itens: List<ItemNFCe>) {
+        withContext(Dispatchers.IO) {
+            nfceDao.insertItens(itens)
+        }
+    }
+    
     suspend fun getNFCeById(id: Long): NFCe? {
         return withContext(Dispatchers.IO) {
             nfceDao.getNFCeById(id)

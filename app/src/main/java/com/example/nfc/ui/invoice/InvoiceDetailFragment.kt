@@ -64,6 +64,15 @@ class InvoiceDetailFragment : Fragment() {
         
         viewModel.itens.observe(viewLifecycleOwner) { itens ->
             itensAdapter.submitList(itens)
+            
+            // Mostrar/ocultar seção de itens
+            if (itens.isEmpty()) {
+                binding.textItensTitle.visibility = View.GONE
+                binding.recyclerViewItens.visibility = View.GONE
+            } else {
+                binding.textItensTitle.visibility = View.VISIBLE
+                binding.recyclerViewItens.visibility = View.VISIBLE
+            }
         }
         
         viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
@@ -73,6 +82,15 @@ class InvoiceDetailFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            }
+        }
+        
+        viewModel.statusMessage.observe(viewLifecycleOwner) { status ->
+            status?.let {
+                binding.textStatusMessage.text = it
+                binding.textStatusMessage.visibility = View.VISIBLE
+            } ?: run {
+                binding.textStatusMessage.visibility = View.GONE
             }
         }
     }
@@ -103,9 +121,33 @@ class InvoiceDetailFragment : Fragment() {
             // Status
             textStatus.text = nfce.status
             when (nfce.status) {
-                "ATIVA" -> textStatus.setTextColor(resources.getColor(android.R.color.holo_green_dark, null))
-                "CANCELADA" -> textStatus.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
-                else -> textStatus.setTextColor(resources.getColor(android.R.color.darker_gray, null))
+                "ATIVA" -> {
+                    textStatus.setTextColor(resources.getColor(android.R.color.holo_green_dark, null))
+                    textStatus.text = "✓ ATIVA"
+                }
+                "CONSULTANDO" -> {
+                    textStatus.setTextColor(resources.getColor(android.R.color.holo_orange_light, null))
+                    textStatus.text = "⟳ CONSULTANDO..."
+                }
+                "CONSULTADA" -> {
+                    textStatus.setTextColor(resources.getColor(android.R.color.holo_blue_light, null))
+                    textStatus.text = "✓ CONSULTADA"
+                }
+                "CANCELADA" -> {
+                    textStatus.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+                    textStatus.text = "✗ CANCELADA"
+                }
+                "ERRO_CONSULTA" -> {
+                    textStatus.setTextColor(resources.getColor(android.R.color.holo_orange_dark, null))
+                    textStatus.text = "⚠ ERRO NA CONSULTA"
+                }
+                "PENDENTE" -> {
+                    textStatus.setTextColor(resources.getColor(android.R.color.darker_gray, null))
+                    textStatus.text = "⋯ PENDENTE"
+                }
+                else -> {
+                    textStatus.setTextColor(resources.getColor(android.R.color.darker_gray, null))
+                }
             }
         }
     }

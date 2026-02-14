@@ -28,6 +28,7 @@ object NFCeApiClient {
         .build()
     
     val nfceService: NFCeConsultaService = retrofit.create(NFCeConsultaService::class.java)
+    val xmlService: NFCeXmlService = retrofit.create(NFCeXmlService::class.java)
     
     /**
      * Cria um cliente para diferentes estados

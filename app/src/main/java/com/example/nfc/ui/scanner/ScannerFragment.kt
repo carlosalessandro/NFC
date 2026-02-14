@@ -60,7 +60,6 @@ class ScannerFragment : Fragment() {
         viewModel.scanResult.observe(viewLifecycleOwner) { result ->
             result?.let {
                 // Navegar para tela de detalhes da NFC-e
-                // Navegar para detalhes da NFC-e
                 val bundle = Bundle().apply {
                     putString("chaveAcesso", it)
                 }
@@ -76,17 +75,25 @@ class ScannerFragment : Fragment() {
                         Bundle().apply { putString("chaveAcesso", it) }
                     )
                 }
+                viewModel.clearScanResult()
             }
         }
         
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                viewModel.clearError()
             }
         }
         
         viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+        
+        viewModel.validationMessage.observe(viewLifecycleOwner) { message ->
+            message?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
     

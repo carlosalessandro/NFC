@@ -37,6 +37,20 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
+                    <!-- Status Message -->
+                    <TextView
+                        android:id="@+id/text_status_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@android:color/holo_blue_light"
+                        android:padding="8dp"
+                        android:text="Consultando dados..."
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -264,6 +278,7 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/text_itens_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Itens da Nota"
